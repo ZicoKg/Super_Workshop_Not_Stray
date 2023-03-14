@@ -17,13 +17,14 @@ public class MouseBehaviour : MonoBehaviour
     public enum mouseState { idle, wander, flee };
     public mouseState state;
 
+    private Vector3 spawnPoint;
     private Rigidbody rb;
-
     private GameObject player;
 
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        spawnPoint = transform.position;
     }
 
     // Start is called before the first frame update
@@ -95,6 +96,11 @@ public class MouseBehaviour : MonoBehaviour
                 transform.rotation = rotation;
                 rb.velocity = transform.forward * runSpeed * Time.deltaTime;
             }
+        }
+        if(transform.position.y <= -10)
+        {
+            Debug.Log(gameObject.name + " fell out of the map. Sending back to its spawnpoint: " + spawnPoint);
+            transform.position = spawnPoint;
         }
     }
 
