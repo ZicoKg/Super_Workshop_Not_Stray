@@ -9,11 +9,13 @@ public class Counting : MonoBehaviour
     // For UI
     private int count;
     private int stamina;
-    public TextMeshPro countText;
-    public TextMeshPro staminaText;
+    private TextMeshProUGUI countText;
+    private TextMeshProUGUI staminaText;
    
     void Start()
     {
+        countText = GameObject.Find("CountText").GetComponent<TextMeshProUGUI>();
+        staminaText = GameObject.Find("StaminaText").GetComponent<TextMeshProUGUI>();
         // For UI
         stamina = 100; 
         count = 10;
