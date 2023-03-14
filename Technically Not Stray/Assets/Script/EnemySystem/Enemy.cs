@@ -31,6 +31,7 @@ namespace Script.EnemySystem
             _trigger.isTrigger = true;
         }
 
+
         private void Update()
         {
             switch (_state)
