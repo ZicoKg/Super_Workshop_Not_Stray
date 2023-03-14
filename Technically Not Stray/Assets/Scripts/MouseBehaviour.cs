@@ -37,7 +37,7 @@ public class MouseBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("[DEBUG] Mouse state: (" + state + ") wanderTimerLeft: " + wanderTimerLeft);
+        //Debug.Log("[DEBUG] Mouse state: (" + state + ") wanderTimerLeft: " + wanderTimerLeft);
         if (state.Equals(mouseState.wander))
         {
             //Check if player is close enough to change state
