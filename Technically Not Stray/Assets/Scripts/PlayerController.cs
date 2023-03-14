@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 namespace Cinemachine.Examples
 {
@@ -17,12 +18,24 @@ namespace Cinemachine.Examples
         private Quaternion freeRotation;
         private Camera mainCamera;
 
+        // For UI
+        private int count;
+        private int stamina;
+        public TextMesh countText;
+        public TextMeshPro staminaText;
+
         // Use this for initialization
         void Start()
         {
             animator = GetComponent<Animator>();
             Cursor.lockState = CursorLockMode.Locked;
             mainCamera = Camera.main;
+
+            // For UI
+            stamina = 100;
+            count = 10;
+            setCountText();
+            setStaminaText();
         }
 
         // Update is called once per frame
@@ -83,6 +96,32 @@ namespace Cinemachine.Examples
                 //get the right-facing direction of the referenceTransform
                 var right = transform.TransformDirection(Vector3.right);
                 targetDirection = input.x * right + Mathf.Abs(input.y) * forward;
+            }
+        }
+
+        void setCountText()
+        {
+            countText.text = "Count: " + count.ToString();
+        }
+
+        void setStaminaText()
+        {
+            staminaText.text = "Stamina: " + stamina.ToString();
+        }
+        private void OnTriggerEnter(Collider col)
+        {
+            if (col.gameObject.CompareTag("Rat"))
+            {
+                count--;
+                stamina = +20;
+                setCountText();
+                setStaminaText();
+            }
+
+            if (col.gameObject.CompareTag("Enemy"))
+            {
+                stamina = -60;
+                setStaminaText();
             }
         }
     }

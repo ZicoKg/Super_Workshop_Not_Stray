@@ -100,6 +100,7 @@ public class MouseBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("WOOPS");
         if (collision.gameObject.transform.tag == player.tag)
         {
             Debug.Log("Mouse has been caught by the player");
